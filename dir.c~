@@ -1,0 +1,15 @@
+#include <dirent.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+
+int main(){
+  DIR * d;
+  d = opendir("./");
+  struct dirent * entry;
+  entry = readdir(d);
+  //printf("%s", entry);
+  return 0;
+}
