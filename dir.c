@@ -6,27 +6,21 @@
 #include <sys/types.h>
 #include <errno.h>
 
-int main(){
+int main(int argc, char * argv[]){
+
   char directory[50];
-  printf("Enter a directory to check:");
-  fgets(directory,50,stdin);
-  //Removing the trailing newline
-  int len = strlen(directory);
-  if (len > 0 && directory[len - 1] == '\n'){
-    directory[len - 1] = '\0';
+  if (argc == 2){
+    strcpy(directory, argv[1]);
   }
-  //If user input is empty, prompt user to input and chop off trailing newline
+  else if(argc == 1){
+  //If user input is empty, prompt user to input
   while(strlen(directory) < 1){
     printf("Enter a directory to check:");
-    fgets(directory,50,stdin);
-    len = strlen(directory);
-    if (len > 0 && directory[len - 1] == '\n'){
-      directory[len - 1] = '\0';
-    }
+    scanf("%s",directory);
   }
 
+}
   printf("Checking directory: %s \n", directory);
-
   DIR * d;
 
   struct stat * info = malloc(sizeof(struct stat));
